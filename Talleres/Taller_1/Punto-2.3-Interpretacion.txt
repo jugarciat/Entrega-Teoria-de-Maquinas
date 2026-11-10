@@ -1,0 +1,41 @@
+TALLER 1 - TEORÍA DE APRENDIZAJE DE MÁQUINA
+PUNTO 2.3. INTERPRETACIÓN DE LOS RESULTADOS DEL ALGORITMO k-NN
+
+A) ¿QUÉ OCURRE CUANDO SE ESCOGE UN VALOR DE k MUY PEQUEÑO O MUY GRANDE?
+
+Cuando se utiliza un valor de k muy pequeño, por ejemplo k = 1, el algoritmo clasifica una observación considerando únicamente su vecino más cercano. Esto hace que el modelo sea muy sensible al ruido y a las observaciones atípicas, aumentando el riesgo de sobreajuste (overfitting). Aunque puede obtener una exactitud muy alta en entrenamiento, su rendimiento puede disminuir con datos nuevos.
+
+Por otro lado, cuando k es muy grande, el algoritmo considera demasiados vecinos para realizar la clasificación. Esto produce fronteras de decisión más suaves, pero puede hacer que el modelo pierda detalles importantes de la distribución de los datos, aumentando el riesgo de subajuste (underfitting).
+
+En consecuencia, es necesario seleccionar un valor de k que permita encontrar un equilibrio entre la capacidad de aprendizaje y la generalización del modelo.
+
+B) ¿CUÁL DE LOS MODELOS GENERALIZÓ MEJOR EN ESTA EVALUACIÓN?
+
+Tomando como referencia los resultados manejados anteriormente para el punto 2.2:
+
+Valor de k  | Accuracy entrenamiento | Accuracy prueba
+k = 1       | 100,00 %               | 93,33 %
+k = 5       |  95,71 %               | 95,56 %
+k = 15      |  95,71 %               | 93,33 %
+
+El modelo con k = 5 presentó la mejor generalización en esta evaluación, porque obtuvo la mayor exactitud en el conjunto de prueba (95,56 %).
+
+Además, la diferencia entre su exactitud de entrenamiento y prueba fue pequeña, lo que sugiere que el modelo consiguió un equilibrio adecuado entre aprender los patrones de entrenamiento y clasificar observaciones nuevas.
+
+En cambio, k = 1 obtuvo una exactitud perfecta en entrenamiento, pero inferior en prueba, lo que indica un posible sobreajuste. El modelo con k = 15 también presentó una exactitud de prueba inferior a la de k = 5.
+
+NOTA IMPORTANTE: Estas cifras son las utilizadas anteriormente en la conversación y no se han verificado ejecutando el programa. Deben contrastarse con la salida real del código del punto 2.2 antes de presentar la respuesta definitiva.
+
+C) ¿POR QUÉ LA SELECCIÓN FORMAL DEL MEJOR k DEBE REALIZARSE CON VALIDACIÓN Y NO CON LOS DATOS DE PRUEBA?
+
+La selección del mejor valor de k debe realizarse utilizando un conjunto de validación, porque este permite comparar diferentes configuraciones del modelo sin comprometer la evaluación final.
+
+Si utilizamos repetidamente los datos de prueba para escoger el mejor k, estaremos ajustando indirectamente el modelo a esos datos. Como consecuencia, la exactitud obtenida podría ser demasiado optimista y dejaría de representar una evaluación independiente.
+
+Por esta razón, los datos deben separarse según sus funciones:
+
+- Entrenamiento: para construir el modelo.
+- Validación: para seleccionar el valor de k más adecuado.
+- Prueba: para evaluar finalmente la capacidad de generalización del modelo seleccionado.
+
+En conclusión, la validación permite seleccionar los hiperparámetros de manera más confiable, mientras que el conjunto de prueba debe reservarse para la evaluación final del rendimiento del modelo.
